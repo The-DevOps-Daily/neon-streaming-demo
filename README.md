@@ -15,7 +15,7 @@ A [Hono](https://hono.dev) function deployed on [Neon Functions](https://neon.co
 | Route | What it does |
 | --- | --- |
 | `GET /long-stream?seconds=90` | Server-sent events, one tick per second, for up to 600s. Proves the function holds the connection open well past short serverless caps. |
-| `POST /agent` | Streams an AI agent's tokens through the Neon AI Gateway (`gpt-5-nano`) as they are generated. Body: `{"prompt":"..."}`. |
+| `POST /agent` | Streams an AI agent's tokens through the Neon AI Gateway (`gpt-6-luna`) as they are generated. Body: `{"prompt":"..."}`. |
 
 ## Run it
 
@@ -40,3 +40,7 @@ curl -N -X POST "https://<your-branch>-stream.compute.<region>.aws.neon.tech/age
 ```
 
 The whole backend is declared in `neon.ts`, and the streaming logic is in `src/index.ts` (about 80 lines).
+
+## Model retirement (updated 25 November 2026)
+
+OpenAI ends API access to GPT-5, GPT-5 mini, GPT-5 nano, GPT-5 pro, o3 and o3-pro on 11 December 2026. `POST /agent` used `gpt-5-nano`; it now uses `gpt-6-luna`. The timings in the companion post were measured with `gpt-5-nano`. The skill files under `.agents/` come from [neondatabase/agent-skills](https://github.com/neondatabase/agent-skills) (pinned in `skills-lock.json`) and may still name older models.

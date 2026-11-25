@@ -48,7 +48,7 @@ app.post('/agent', async (c) => {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'content-type': 'application/json' },
     body: JSON.stringify({
-      model: 'gpt-5-nano',
+      model: 'gpt-6-luna',
       stream: true,
       messages: [
         { role: 'user', content: prompt ?? 'Explain Neon database branching in three short sentences.' },
